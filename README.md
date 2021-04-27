@@ -24,16 +24,15 @@ A general overview of what is and is not allowed in the Java subset for this lab
   * A type-proof for a compilation unit is that all methods are type-correct in the class
   * All `FieldDeclaration` instances have no **initializer** 
   * Names for all entities are unique: no shadowing of any kind
-  * All field references are type `FieldAccess` of the form `this.field` or `QualifiedName` of the form `n.m`
   * `int`, `boolean`, `NullType` (e.g., `NullLiteral`), and objects are the only types
   * `InfixExpression` instances for operators `+`, `-`, and `*` are always  `int,int:int` (e.g, expecting two `int` types and returning an `int` type)
   * `InfixExpression` instances for operators `&&` and `||` are always `boolean,boolean:boolean`
   * `InfixExpression` instances for operator `<` are always `int,int:boolean`
   * `PrefixExpression` instances for operator `!` are `boolean:boolean`
-  * `InfixExpression` instances for operator `==` are always `Object,Object:boolean` where `Object` is an object type or `nullType`, `int,int:boolean`, or `boolean,boolean:boolean`
-  * Assignment, `=`, between objects is like the `==` in that it requires types to be the same but with the added ability te assign objects to `null`, so `object,null:void` is type safe.
+  * `InfixExpression` instances for operator `==` are always `Object,Object:boolean` (where `Object` is an object type or `nullType`), `int,int:boolean`, or `boolean,boolean:boolean`
+  * Assignment, `=`, between objects is like the `==` in that it requires types to be the same but with the added ability to assign objects to `null`, so `object,null:void` is type safe.
   
-The type-checker must eventually prove the following languague features. The notation is the `ASTNode` type followed by the type it should have have to *type-safe*: `<ASTNode>:<type>` where `<environment>` means that it is the type defined by the environment. The types are listed in `TypeCheckTypes`.
+The type-checker must eventually prove the following languague features. The notation is the `ASTNode` type followed by the type it should have to be *type-safe*: `<ASTNode>:<type>` where `<environment>` means that it is the type defined by the environment. The types are listed in `TypeCheckTypes`.
 
   * `MethodDeclaration:void` (provided)
   * `CompilationUnit:void` (provided)
@@ -44,14 +43,12 @@ The type-checker must eventually prove the following languague features. The not
   * `VariableDeclarationStatement:void` (provided)
   * `SimpleName:<environment>` (provided)
   * `ReturnStatement:void` (lab 3)
-  * `ExpressionStatement:void` for `Assignment` (lab 3)
+  * `Assignment:void` (lab 3)
   * `PrefixExpression:boolean` for `!` (lab 3)
   * `InfixExpression:int` for `+`, `*`, and `-` (lab 3)
   * `InfixExpression:boolean` for `&&`, `||`, `<`, and `==` (lab 3)
   * `IfStatement:void` (lab 3)
   * `WhileStatement:void` (lab 3) 
-  * `FieldAccess:<environment>` (e.g., `this.a`) (lab 4)
-  * `QualifiedName:<environment>` (e.q., `n.a`) (lab 4)
   * `MethodInvocation:<environment>` (lab 4)
 
 If something seems unusually hard then reach out to the instructor as it most likely out of scope or not intended. 
@@ -88,7 +85,7 @@ It is strongly encouraged to adopt a test driven approach to the lab. Define a t
 Implement the type rules as dynamic tests for the static type proof for the following language features:
 
   * `ReturnStatement:void` 
-  * `ExpressionStatement:void` 
+  * `Assignment:void` 
   * `PrefixExpression:boolean`
   * `InfixExpression:int` 
   * `InfixExpression:boolean` 
@@ -109,20 +106,4 @@ Create a pull request when the lab is done. Submit to Canvas the URL of the repo
 
 # Rubric
 
-| Item | Point Value |
-| ------- | ----------- |
-| `ReturnStatement:void` | 10 | 
-| `ReturnStatement:void` tests| 15 |
-| `ExpressionStatement:void` for `Assignment` | 10 | 
-| `ExpressionStatement:void` for `Assignment` tests | 15 | 
-| `PrefixExpression:boolean` | 10 |
-| `PrefixExpression:boolean` tests | 15 |
-| `InfixExpression:int` | 10 |
-| `InfixExpression:int` tests | 15 |
-| `InfixExpression:boolean` | 10 | 
-| `InfixExpression:boolean` tests | 15 | 
-| `IfStatement:void` | 10 |
-| `IfStatement:void` tests | 15 |
-| `WhileStatement:void` | 10 | 
-| `WhileStatement:void` tests | 15 | 
-| Style, documentation, naming conventions, test organization, readability, etc. | 25 | 
+See Canvas for details
